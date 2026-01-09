@@ -221,4 +221,13 @@ const adventureBooks = books.filter((books => books.genres.includes("adventure")
 adventureBooks;
 
 
-const pagesAllBooks = books.reduce();
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+pagesAllBooks;
+
+
+const y = [3,7,1,9,6];
+const sorted = y.slice().sort((a, b) => b - a); 
+
+
+const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages).map(book => book.title);
+sortedByPages;
