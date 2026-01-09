@@ -142,3 +142,83 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+/*
+const book = getBook(3);
+
+// const title = book.title;
+// const author = book.author;
+
+const {title, author, pages, publicationDate, genres, hasMovieAdaptation} = book;
+console.log(title, author, pages, publicationDate, genres, hasMovieAdaptation);
+
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
+
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+console.log(primaryGenre, secondaryGenre, otherGenres);
+
+const newGenres = [...genres, 'epic fantasy'];
+console.log(newGenres);
+
+const updatedBook = {...book, moviePublicationDate: '2001-12-19', pages: 1210};
+updatedBook;
+
+//Tempelate Literal
+
+const summary = `${title} is a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split("-")[0]}.`;
+summary;
+
+const pagesRange = pages > 1000 ? "over a thousand" : "less than one thousand";
+
+console.log(`The book has ${pagesRange} pages`);
+
+// function getYear(str) {
+//   return str.split("-")[0];
+// }
+
+const getYear = (str) => str.split("-")[0];
+
+console.log(getYear(publicationDate));
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+
+console.log(getTotalReviewCount(book));
+*/
+
+const books = getBooks();
+
+
+const x = [1,2,3,4,5].map(el => el * 2);
+console.log(x);
+
+const titles = books.map((book) => book.title);
+
+const essentialData = books.map(book => {
+  return {
+    title: book.title,
+    author: book.author,
+    reviewsCount: getTotalReviewCount(book),
+  }
+});
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+
+const longBooks = books
+  .filter(book => book.pages > 500)
+  .filter(book => book.hasMovieAdaptation).map(book => book.title);
+longBooks;
+
+const adventureBooks = books.filter((books => books.genres.includes("adventure"))).map(book => book.title);
+adventureBooks;
+
+
+const pagesAllBooks = books.reduce();
