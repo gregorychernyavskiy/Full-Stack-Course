@@ -71,46 +71,35 @@ function Header() {
 function Menu() {
   const pizzas = pizzaData;
   const numPizzas = pizzas.length;
-
+  // basically pizzaObj is just an object that passes the pizza object.
+  //So we do pizzas.map(pizza => <Pizza pizzaObj={pizza})
   return (
     <main className="menu">
       <h2>Our menu</h2>
-
+    
       {numPizzas > 0 ? (<ul className="pizzas">
         {pizzas.map(pizza => <Pizza pizzaObj={pizza} key={pizza.name}/>)}
       </ul>) : <p>The menu is not done yet.</p>}
 
-      {/* <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        ingredients="Tomato, mushrooms"
-        price={12}
-        photoName="pizzas/funghi.jpg"
-      /> */}
     </main>
   );
 }
 
 
-function Pizza(props) {
+function Pizza({pizzaObj}) {
 //   if(props.pizzaObj.soldOut) return null;
 
 
   return (
-    <li className={`pizza ${props.pizzaObj.soldOut ? "sold-out" : ""}`}>
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
 
         {/* {props.pizzaObj.soldOut ? <span>SOLD OUT</span> : <span>props.pizzaObj.price</span>} */}
 
-        <span>{props.pizzaObj.soldOut ? "SOLD OUT" : props.pizzaObj.price}</span>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
